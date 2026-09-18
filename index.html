@@ -99,6 +99,34 @@
 
   <p>© 2026 Money Learning Studio</p>
 </footer>
+<section style="text-align:center; padding:40px 20px;">
+  <h2>TikTokと連携</h2>
+  <p>TikTokアカウントを連携して、動画を投稿できます。</p>
 
+  <button
+    onclick="loginWithTikTok()"
+    style="padding:14px 24px; font-size:16px; cursor:pointer;">
+    TikTokでログイン
+  </button>
+</section>
+
+<script>
+function loginWithTikTok() {
+  const clientKey = "awinsyna37gijvqw";
+  const redirectUri =
+    "https://fryota0712-droid.github.io/money-learning-studio/callback.html";
+
+  const url =
+    "https://www.tiktok.com/v2/auth/authorize/" +
+    "?client_key=" + encodeURIComponent(clientKey) +
+    "&scope=" + encodeURIComponent(
+      "user.info.basic,video.upload,video.publish"
+    ) +
+    "&response_type=code" +
+    "&redirect_uri=" + encodeURIComponent(redirectUri);
+
+  window.location.href = url;
+}
+</script>
 </body>
 </html>
