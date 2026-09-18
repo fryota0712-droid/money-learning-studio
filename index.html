@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Money Learning Studio</title>
   <meta name="description" content="投資初心者向けの金融教育コンテンツを提供するMoney Learning Studioの公式サイトです。">
+
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -46,6 +47,17 @@
       padding: 30px;
       border-radius: 14px;
       box-shadow: 0 4px 18px rgba(0,0,0,.06);
+    }
+
+    .tiktok-section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .tiktok-button {
+      padding: 14px 24px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     footer {
@@ -93,40 +105,53 @@
 
 </main>
 
+<section class="tiktok-section">
+  <h2>TikTokと連携</h2>
+
+  <p>
+    TikTokアカウントを連携して、動画を投稿できます。
+  </p>
+
+  <button
+    class="tiktok-button"
+    onclick="loginWithTikTok()">
+    TikTokでログイン
+  </button>
+</section>
+
 <footer>
   <a href="terms.html">利用規約</a>
   <a href="privacy.html">プライバシーポリシー</a>
 
   <p>© 2026 Money Learning Studio</p>
 </footer>
-<section style="text-align:center; padding:40px 20px;">
-  <h2>TikTokと連携</h2>
-  <p>TikTokアカウントを連携して、動画を投稿できます。</p>
-
-  <button
-    onclick="loginWithTikTok()"
-    style="padding:14px 24px; font-size:16px; cursor:pointer;">
-    TikTokでログイン
-  </button>
-</section>
 
 <script>
 function loginWithTikTok() {
+
   const clientKey = "awinsyna37gijvqw";
+
   const redirectUri =
     "https://fryota0712-droid.github.io/money-learning-studio/callback.html";
+
+  const state = crypto.randomUUID();
+
+  sessionStorage.setItem(
+    "tiktok_oauth_state",
+    state
+  );
 
   const url =
     "https://www.tiktok.com/v2/auth/authorize/" +
     "?client_key=" + encodeURIComponent(clientKey) +
-    "&scope=" + encodeURIComponent(
-      "user.info.basic,video.upload,video.publish"
-    ) +
+    "&scope=" + encodeURIComponent("user.info.basic") +
     "&response_type=code" +
-    "&redirect_uri=" + encodeURIComponent(redirectUri);
+    "&redirect_uri=" + encodeURIComponent(redirectUri) +
+    "&state=" + encodeURIComponent(state);
 
   window.location.href = url;
 }
 </script>
+
 </body>
 </html>
