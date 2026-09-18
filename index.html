@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Money Learning Studio</title>
-  <meta name="description" content="投資初心者向けの金融教育コンテンツを提供するMoney Learning Studioの公式サイトです。">
+
+  <meta
+    name="description"
+    content="投資初心者向けの金融教育コンテンツを提供するMoney Learning Studioの公式サイトです。"
+  >
 
   <style>
     body {
@@ -106,6 +111,7 @@
 </main>
 
 <section class="tiktok-section">
+
   <h2>TikTokと連携</h2>
 
   <p>
@@ -114,26 +120,39 @@
 
   <button
     class="tiktok-button"
-    onclick="loginWithTikTok()">
+    onclick="loginWithTikTok()"
+  >
     TikTokでログイン
   </button>
+
 </section>
 
 <footer>
-  <a href="terms.html">利用規約</a>
-  <a href="privacy.html">プライバシーポリシー</a>
 
-  <p>© 2026 Money Learning Studio</p>
+  <a href="terms.html">
+    利用規約
+  </a>
+
+  <a href="privacy.html">
+    プライバシーポリシー
+  </a>
+
+  <p>
+    © 2026 Money Learning Studio
+  </p>
+
 </footer>
 
 <script>
 function loginWithTikTok() {
 
-  const clientKey = "awinsyna37gijvqw";
+  // TikTok Sandbox Client Key
+  const clientKey = "sbawf933o7vpcfjj6f";
 
   const redirectUri =
     "https://fryota0712-droid.github.io/money-learning-studio/callback.html";
 
+  // OAuth CSRF対策用state
   const state = crypto.randomUUID();
 
   sessionStorage.setItem(
@@ -141,6 +160,7 @@ function loginWithTikTok() {
     state
   );
 
+  // TikTok Login Kit
   const url =
     "https://www.tiktok.com/v2/auth/authorize/" +
     "?client_key=" + encodeURIComponent(clientKey) +
